@@ -1,0 +1,9 @@
+role:"recentdocuments"|label:"最近使用的文件",role:"recentdocuments"
+role:"clearrecentdocuments"|label:"清空最近文件列表",role:"clearrecentdocuments"
+"Save","Cancel","Don't save"|"保存","取消","不保存"
+Do you want to save the changes you made to ${t.length} ${1===t.length?"file":"files"}?|是否要保存对${t.length}个文件所做的更改？
+Your changes will be lost if you don't save them.|如果您不保存更改，您的更改将会丢失。
+title:"Exported successfully"|title:"导出成功"
+message:`Exported "${ne().basename(i)}" successfully!`|message:`导出 "${ne().basename(i)}" 成功!`
+title:"Import Warning"|title:"导入警告"
+message:"Install pandoc before you want to import files."|message:"在导入文件之前先安装 pandoc。"

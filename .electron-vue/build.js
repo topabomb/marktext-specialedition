@@ -11,6 +11,28 @@ const webpack = require('webpack')
 const Listr = require('listr')
 
 
+function doTranslate() {
+  /*
+  let toLang = ''
+  if (process.env['lang']){
+    toLang = process.env['lang']
+  }
+  if (toLang == '') return true
+  */
+  const toLang='zh-cn'//强制使用中文
+  require('ts-node/register')
+  const { markTextAsarTranslate } = require('../marktext_asar_translate')
+  console.log(process.env['lang'])
+  const longRootPath = './'
+  const jsRootPath = './dist/electron/'
+  const mainJsFileName = path.join(jsRootPath, './main.js')
+  const outMainJsFileName = path.join(jsRootPath, './main.js')
+  const rendererJsFileName = path.join(jsRootPath, './renderer.js')
+  const outRendererJsFileName = path.join(jsRootPath, './renderer.js')
+  return markTextAsarTranslate(longRootPath, toLang, mainJsFileName, outMainJsFileName, rendererJsFileName, outRendererJsFileName)
+}
+
+
 const mainConfig = require('./webpack.main.config')
 const rendererConfig = require('./webpack.renderer.config')
 
@@ -78,6 +100,12 @@ async function build () {
   await tasks
     .run()
     .then(() => {
+
+      console.log('do translate process')
+      if (!doTranslate()){
+        process.exit(1)
+      }
+
       process.stdout.write('\x1B[2J\x1B[0f')
       console.log(`\n\n${results}`)
       console.log(`${okayLog}take it away ${chalk.yellow('`electron-builder`')}\n`)
