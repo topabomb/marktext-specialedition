@@ -698,7 +698,11 @@ export default {
       // Save an image relative to the file if the relative image directory include the filename variable.
       // The image is save relative to the root folder without a variable.
       const saveRelativeToFile = () => {
-        return /\${filename}/.test(imageRelativeDirectoryName)
+        // 增加额外的变量识别
+        return /\${filename}/.test(imageRelativeDirectoryName) ||
+        /\${fileBasenameNoExtension}/.test(imageRelativeDirectoryName) ||
+        /\${fileWorkspaceFolder}/.test(imageRelativeDirectoryName) ||
+        /\${relativeFileDirname}/.test(imageRelativeDirectoryName)
       }
 
       // Figure out the current working directory.
@@ -717,7 +721,28 @@ export default {
           // Filename w/o extension
           ? filename.replace(/\.[^/.]+$/, '')
           : ''
-        return imagePath.replace(/\${filename}/g, replacement)
+        // return imagePath.replace(/\${filename}/g, replacement)
+        let result = imagePath.replace(/\${filename}/g, replacement)
+        // 增加额外的预设变量
+        if (this.projectTree) {
+          const { pathname: rootPath } = this.projectTree
+          const { pathname: filePath } = this.currentFile
+          const fileDir = path.dirname(filePath)
+          const relativeDir = path.relative(rootPath, fileDir)
+          console.log(relativeBasePath, this.projectTree, this.currentFile, rootPath, filePath, fileDir)
+          console.log(result)
+          result = result.replace(/\${fileBasenameNoExtension}/g, replacement)
+          console.log(result)
+          result = result.replace(/\${fileWorkspaceFolder}/g, rootPath)
+          console.log(result)
+          result = result.replace(/\${relativeFileDirname}/g, relativeDir)
+          console.log(result)
+          if (path.isAbsolute(result)) {
+            result = path.relative(relativeBasePath, path.normalize(result))
+            console.log(result)
+          }
+        }
+        return result
       }
 
       const resolvedImageFolderPath = getResolvedImagePath(imageFolderPath)
@@ -741,6 +766,9 @@ export default {
           destImagePath = await moveImageToFolder(pathname, image, resolvedImageFolderPath)
           if (isTabSavedOnDisk && imagePreferRelativeDirectory) {
             destImagePath = await moveToRelativeFolder(relativeBasePath, resolvedImageRelativeDirectoryName, pathname, destImagePath)
+            console.log(destImagePath)
+            // 针对非./开始的相对路径增加./
+            if (!destImagePath.startsWith('.'))destImagePath = `./${destImagePath}`
           }
           break
         }

@@ -500,6 +500,8 @@ class App {
     })
 
     ipcMain.on('app-open-directory-by-id', (windowId, pathname, openInSameWindow) => {
+      // 增加针对目录的处理
+      this._accessor.preferences.watchedFolderChange(pathname)
       const { openFolderInNewWindow } = this._accessor.preferences.getAll()
       if (openInSameWindow || !openFolderInNewWindow) {
         const editor = this._windowManager.get(windowId)

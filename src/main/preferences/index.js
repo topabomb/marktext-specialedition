@@ -153,6 +153,42 @@ class Preference extends EventEmitter {
       this.setItems(settings)
     })
   }
+
+  // 增加一个方法处理打开文件夹
+  watchedFolderChange (folder) {
+    const defaultname = 'marktext'
+    const settingspath = path.join(`${folder}`, `${defaultname}.json`)
+    if (fs.existsSync(settingspath)) {
+      console.log(`hit folder preference ${settingspath}.`)
+      const newstore = new Store({
+        schema,
+        name: defaultname,
+        cwd: folder
+      })
+      const oldSettings = this.store.store
+      this.store = newstore
+      const settings = JSON.parse(fs.readFileSync(settingspath, { encoding: 'utf8' }) || '{}')
+      for (const key of Object.keys(settings)) {
+        oldSettings[key] = settings[key]
+      }
+      this.setItems(oldSettings)
+    } else {
+      console.log(`${settingspath} non-existent`)
+      if (this.store.name !== PREFERENCES_FILE_NAME) {
+        const newstore = new Store({
+          schema,
+          name: PREFERENCES_FILE_NAME
+        })
+        this.store = newstore
+        const settings = this.getAll()
+        this.setItems(settings)
+      }
+    }
+  }
+
+  isFolderSettings () {
+    return this.store.name !== PREFERENCES_FILE_NAME
+  }
 }
 
 export default Preference
