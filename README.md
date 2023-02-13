@@ -18,20 +18,24 @@
 ## 已实现特色
 
 - Mermaid更新到9.3.0；
+
 - 增加 Mermaid mindmap的支持；
+
 - 修改为中文版本，感谢[chinayangxiaowei](https://github.com/chinayangxiaowei/marktext-chinese-language-pack)提供的思路；
+
 - 类似于vscode工作区，打开不同的目录可以应用不同的设置，folder settings 文件名为marktext.json；
   
   > 例如针对文件夹
   
   ```json
   {
-    "imageRelativeDirectoryName": "testimage",
+    "imageRelativeDirectoryName": "${fileWorkspaceFolder}/markdown/_images/${relativeFileDirname}/${fileBasenameNoExtension}",
     "imagePreferRelativeDirectory": true,
     "imageInsertAction": "folder",
     "theme": "one-dark"
   }
   ```
+
 - 优化剪贴板图片的复制的处理，可以通过多个预置变量来个性化图片的本地存储路径；
   
   | 变量名                       | 说明                           |
