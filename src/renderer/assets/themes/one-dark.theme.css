@@ -72,7 +72,8 @@
   --floatBorderColor: #181a1f;
   --floatShadow: rgba(0, 0, 0, 0.3);
   --maskColor: rgba(0, 0, 0, .7);
-  --editorAreaWidth: 750px;
+  /* --editorAreaWidth: 750px; */
+  --editorAreaWidth:calc(90vw);
 }
 
 ::-webkit-scrollbar,
