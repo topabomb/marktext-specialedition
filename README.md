@@ -1,7 +1,5 @@
 # MarkText 0.17.1分叉的特别版
 
-### 段落三
-
 ## 为什么会有这个特别版
 
 > 笔者的Ebook的项目选择了Markdown作为工件格式，期望编辑器能够：
@@ -18,25 +16,23 @@
 3. 用于存储图片的相对路径图像文件夹支持的预置变量太少，不能满足复杂结构项目的需求；
 
 ## 更新历史
-
-- v1.0.0beta发布，仅包含win64便携版，其他操作系统等稳定版本后再发布
-
--
+> 感谢[Ran Luo](https://github.com/Jocs)及其他贡献者的贡献，您如果喜欢原始的MarkText，请访问[原始仓库](https://github.com/marktext/marktext)
+- v1.0.0beta发布，包含win_x64、MacOS x64、Arm64等版本；
 
 ## 已实现特色
 
 - 优化样式，提升空间利用率及操作体验；
 
-- Mermaid更新到9.3.0；
+- Mermaid更新到较新版本；
 
 - 增加 Mermaid mindmap的支持；
 
 - 修改为中文版本，感谢[chinayangxiaowei](https://github.com/chinayangxiaowei/marktext-chinese-language-pack)提供的思路；
 
 - 类似于vscode工作区，打开不同的目录可以应用不同的设置，folder settings 文件名为marktext.json；
-  
+
   > 例如针对文件夹
-  
+
   ```json
   {
     "imageRelativeDirectoryName": "${fileWorkspaceFolder}/markdown/_images/${relativeFileDirname}/${fileBasenameNoExtension}",
@@ -47,10 +43,16 @@
   ```
 
 - 优化剪贴板图片的复制的处理，可以通过多个预置变量来个性化图片的本地存储路径；
-  
+
   | 变量名                       | 说明                           |
   | ------------------------- | ---------------------------- |
   | {filename}                | 不包含扩展名                       |
   | {fileBasenameNoExtension} | 同filename，用于与vscode变量兼容      |
   | {fileWorkspaceFolder}     | 当前打开的项目目录，与vscode变量兼容        |
   | {relativeFileDirname}     | 当前文件相对项目根目录的相对路径，与vscode变量兼容 |
+
+## 截图
+- Mindmap
+<img src="./assets/README/2023-02-20-17-10-10-image.png" title="" alt="" width="930">
+- 更多的预置变量
+<img src="./assets/README/2023-02-20-17-10-56-image.png" title="" alt="" width="931">
