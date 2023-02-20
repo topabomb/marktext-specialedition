@@ -1,9 +1,8 @@
 # These are supported funding model platforms
-如下是原始作者(ranluo)的捐赠信息
+# 如下是原始作者(ranluo)的捐赠信息
 patreon: ranluo
 open_collective: marktext
-custom: https://paypal.me/ranluo?locale.x=zh_XC
-中文特别版由(topabomb)免费提供，无需捐赠
-custom: https://weero.net
+custom: ["https://paypal.me/ranluo?locale.x=zh_XC","https://marktext.weero.net"]
+# 中文特别版由(topabomb)免费提供，无需捐赠
 
 
