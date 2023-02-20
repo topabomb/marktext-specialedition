@@ -21,6 +21,12 @@
         <el-col :span="24">
           <div class="text">{{ copyrightContributors }}</div>
         </el-col>
+        <el-col :span="24">
+          <h3 class="title">中文特别版</h3>
+        </el-col>
+        <el-col :span="24">
+          <div class="text">{{ copyright_new }}</div>
+        </el-col>
       </el-row>
     </el-dialog>
   </div>
@@ -37,6 +43,7 @@ export default {
     this.copyright = `Copyright © 2017-${new Date().getFullYear()} Luo Ran`
     this.copyrightContributors = `Copyright © 2018-${new Date().getFullYear()} MarkText Contributors`
     this.logo = MarkTextLogo
+    this.copyright_new = `Copyright © 2023-${new Date().getFullYear()} Topabomb`
     return {
       showAboutDialog: false
     }
