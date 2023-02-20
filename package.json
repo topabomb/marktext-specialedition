@@ -1,5 +1,5 @@
 {
-  "name": "marktext specialedition",
+  "name": "marktext_specialedition",
   "version": "1.0.0",
   "homepage": "https://github.com/marktext/marktext/",
   "description": "Fork自Marktext0.17.1的中文特别版，除汉化之外增加了很多适用于项目化的功能",
